@@ -1,0 +1,902 @@
+/* ==========================================================================
+   Glow Alchemy Studio | Boutique salon stylesheet
+   Mobile-first: base styles = mobile, then enhanced at each breakpoint
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap');
+
+:root {
+  --ivory: #FBF7F1;
+  --gold: #B8935A;
+  --wine: #82323c;
+  --espresso: #4A3728;
+  --sand: #E8DFD3;
+  --terracotta: #D8A48F;
+  --taupe: #8A7460;
+  --white: #FFFFFF;
+
+  --shadow-soft: 0 14px 35px rgba(74, 55, 40, 0.10);
+  --shadow-lift: 0 20px 40px rgba(74, 55, 40, 0.17);
+  --radius: 0.5rem;
+  --content-width: 72rem;
+  --transition: 180ms ease;
+}
+
+/* ==========================================================================
+   CSS Reset / base
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body,
+h1, h2, h3, h4, h5, h6,
+p, ul, ol, figure {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+img,
+picture,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+/* Base and paper-like page surface */
+body {
+  min-width: 18rem;
+  color: var(--espresso);
+  background-color: var(--ivory);
+  background-image: radial-gradient(rgba(184, 147, 90, 0.09) 0.045rem, transparent 0.045rem);
+  background-size: 0.65rem 0.65rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+a {
+  color: var(--wine);
+  text-decoration-color: var(--terracotta);
+  text-decoration-thickness: 0.1em;
+  text-underline-offset: 0.2em;
+  transition: color var(--transition), text-decoration-color var(--transition);
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--gold);
+  text-decoration-color: var(--gold);
+}
+
+a:active {
+  color: var(--espresso);
+}
+
+button,
+a,
+select,
+input,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 0.2rem solid var(--gold);
+  outline-offset: 0.2rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 1rem;
+  color: var(--espresso);
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+h1 {
+  max-width: var(--content-width);
+  margin: clamp(2rem, 8vw, 5rem) auto 1.25rem;
+  padding-inline: 1.25rem;
+  font-size: clamp(2.7rem, 9vw, 5.8rem);
+  text-align: center;
+}
+
+h2 {
+  font-size: clamp(2rem, 5vw, 3.35rem);
+}
+
+h3 {
+  font-size: clamp(1.45rem, 3vw, 2rem);
+}
+
+/* Shared editorial section rhythm */
+main,
+section:not(.booking-section):not(.gallery-section) {
+  width: min(100% - 2.5rem, var(--content-width));
+  margin-inline: auto;
+}
+
+section {
+  padding-block: 3.5rem;
+}
+
+section > h2:first-child::before,
+.booking-section > h2::before,
+.gallery-section > h2::before {
+  display: block;
+  margin-bottom: 0.75rem;
+  color: var(--gold);
+  content: 'Glow Alchemy Studio /';
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   Header and navigation (mobile-first: stacked)
+   ========================================================================== */
+header {
+  position: relative;
+  z-index: 10;
+  top: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 4.5rem;
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid var(--sand);
+  background: rgba(251, 247, 241, 0.95);
+  box-shadow: 0 0.35rem 1.4rem rgba(74, 55, 40, 0.07);
+  backdrop-filter: blur(0.65rem);
+}
+
+.logo {
+  flex: 0 0 auto;
+  color: var(--espresso);
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.logo:hover,
+.logo:focus-visible {
+  color: var(--espresso);
+}
+
+nav {
+  min-width: 0;
+  width: 100%;
+  order: 3;
+}
+
+nav ul,
+.footer-links ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+
+nav a {
+  display: inline-block;
+  padding: 0.35rem 0;
+  color: var(--espresso);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+nav a:hover,
+nav a:focus-visible {
+  color: var(--wine);
+}
+
+nav a:active {
+  color: var(--espresso);
+  opacity: 0.7;
+}
+
+/* ==========================================================================
+   Hero and shared call-to-action treatment
+   ========================================================================== */
+.hero,
+.hero-section {
+  display: grid;
+  min-height: min(38rem, 72vh);
+  place-items: center;
+  padding: 5rem 1.25rem;
+  text-align: center;
+}
+
+.hero h1,
+.hero-section h1 {
+  margin: 0 auto 1rem;
+}
+
+.hero p,
+.tagline {
+  max-width: 36rem;
+  margin: 0 auto 2rem;
+  color: var(--taupe);
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.1rem, 2.6vw, 1.45rem);
+  font-style: italic;
+}
+
+.btn,
+.btn-book,
+button[type='submit'] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.15rem;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--wine);
+  border-radius: 999px;
+  color: var(--white);
+  background: var(--wine);
+  box-shadow: 0 0.5rem 1rem rgba(90, 31, 38, 0.14);
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: transform var(--transition), background-color var(--transition), box-shadow var(--transition);
+}
+
+.btn:hover,
+.btn:focus-visible,
+.btn-book:hover,
+.btn-book:focus-visible,
+button[type='submit']:hover,
+button[type='submit']:focus-visible {
+  color: var(--white);
+  background: var(--espresso);
+  box-shadow: var(--shadow-soft);
+  transform: translateY(-0.15rem);
+}
+
+.btn:active,
+.btn-book:active,
+button[type='submit']:active {
+  background: var(--wine);
+  box-shadow: none;
+  transform: translateY(0.05rem);
+}
+
+/* Full-width editorial banners keep their image and overlay outside constrained sections. */
+.page-banner {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  min-height: 40vh;
+  overflow: hidden;
+  place-items: center;
+  padding: 3rem 1.25rem;
+  color: var(--ivory);
+  background: var(--wine);
+  text-align: center;
+}
+
+.page-banner-img,
+.hero-slide {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+}
+
+.page-banner::after {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(rgba(90, 31, 38, 0.78), rgba(90, 31, 38, 0.55));
+  content: '';
+}
+
+.page-banner-content {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 56rem);
+}
+
+.page-banner-content h1 {
+  max-width: none;
+  margin: 0 auto 1rem;
+  padding: 0;
+  color: var(--ivory);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+}
+
+.page-banner-content p {
+  max-width: 40rem;
+  margin: 0 auto;
+  color: var(--sand);
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.1rem, 2.6vw, 1.5rem);
+  font-style: italic;
+}
+
+/* The homepage banner uses the same treatment with a taller, cross-fading image layer. */
+.hero-banner {
+  min-height: 70vh;
+}
+
+.hero-slide {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.hero-slide.is-active {
+  opacity: 1;
+}
+
+/* Split layouts stack to one column on mobile and share consistent image treatment. */
+.split-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  gap: 2rem;
+  width: min(100% - 2.5rem, var(--content-width));
+  margin-inline: auto;
+  padding-block: 3rem;
+}
+
+.split-section-image {
+  order: -1;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius);
+  object-fit: cover;
+}
+
+.split-section-content {
+  min-width: 0;
+}
+
+/* Main content wrappers stay full-width so banners are never narrowed by editorial layouts. */
+.page-main {
+  width: 100%;
+  margin: 0;
+}
+
+/* The homepage service list remains simple, left-aligned editorial content. */
+.home-services-list {
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+
+/* Service offers use an accessible card and a properly nested item list. */
+.services-card {
+  padding: clamp(1.25rem, 4vw, 2rem);
+  border: 1px solid var(--sand);
+  border-radius: var(--radius);
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+  text-align: left;
+}
+
+.services-card > h2 {
+  text-align: left;
+}
+
+.service-category + .service-category {
+  margin-top: 1.5rem;
+}
+
+.service-category h3 {
+  margin: 0.75rem 0 0.35rem;
+  color: var(--wine);
+}
+
+.service-category h4 {
+  margin: 0.75rem 0 0.25rem;
+  color: var(--taupe);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.service-category ul {
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+
+.services-image {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  object-fit: cover;
+}
+
+/* Contact content keeps the clipping and address together beside its image. */
+.contact-left-stack {
+  display: grid;
+  gap: 2rem;
+}
+
+.contact-left-stack .newspaper-clipping {
+  width: auto;
+  margin: 0;
+}
+
+/* Gallery introduction text is centered above the existing board grid. */
+.gallery-page-intro {
+  width: min(100% - 2.5rem, var(--content-width));
+  margin: 0 auto;
+  padding-top: 3rem;
+  text-align: center;
+}
+
+.gallery-page-intro h2 {
+  margin-bottom: 0.75rem;
+}
+
+/* ==========================================================================
+   Services: works for cards or the current plain service list
+   ========================================================================== */
+.services-grid,
+.service-grid,
+.service-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  width: min(100% - 2.5rem, var(--content-width));
+  margin: 2rem auto;
+}
+
+.service-card {
+  padding: 1.5rem;
+  border: 1px solid var(--sand);
+  border-radius: var(--radius);
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.service-card:hover {
+  box-shadow: var(--shadow-lift);
+  transform: translateY(-0.35rem);
+}
+
+.service-card:active {
+  transform: translateY(-0.1rem);
+  box-shadow: var(--shadow-soft);
+}
+
+.service-card .price,
+.service-card .duration {
+  color: var(--gold);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+/* ==========================================================================
+   Gallery and its optional polaroid / magazine clipping variants
+   ========================================================================== */
+.gallery-section {
+  width: min(100% - 2.5rem, var(--content-width));
+  margin-inline: auto;
+  padding-block: 3rem 4.5rem;
+}
+
+.gallery-intro {
+  color: var(--taupe);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.gallery-item {
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 0.25rem;
+  background: var(--sand);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 400ms ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.04);
+}
+
+.gallery-item:active img {
+  transform: scale(0.98);
+}
+
+.gallery-item.polaroid {
+  height: auto;
+  aspect-ratio: auto;
+  padding: 0.55rem 0.55rem 2.75rem;
+  border-radius: 0;
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+  transform: rotate(-1.5deg);
+}
+
+.gallery-item.polaroid:nth-child(even) {
+  transform: rotate(1.5deg);
+}
+
+.gallery-item.magazine-clipping {
+  display: grid;
+  place-items: center;
+  height: auto;
+  min-height: 14rem;
+  padding: 1.25rem;
+  border: 1px solid var(--gold);
+  border-radius: 0;
+  background: var(--sand);
+  text-align: center;
+  transform: rotate(1deg);
+}
+
+.magazine-clipping h3 {
+  margin: 0;
+  color: var(--wine);
+  font-size: clamp(1.5rem, 4vw, 2.4rem);
+}
+
+/* ==========================================================================
+   Booking form
+   ========================================================================== */
+.booking-section {
+  width: min(100% - 2.5rem, 48rem);
+  margin-inline: auto;
+  padding-block: 3.5rem 5rem;
+}
+
+.booking-intro {
+  color: var(--taupe);
+}
+
+.booking-form {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 2rem;
+  padding: clamp(1.25rem, 5vw, 2.5rem);
+  border: 1px solid var(--sand);
+  border-radius: var(--radius);
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+}
+
+.form-group {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.form-group label {
+  color: var(--espresso);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--sand);
+  border-radius: 0.3rem;
+  color: var(--espresso);
+  background: var(--ivory);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--gold);
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(184, 147, 90, 0.16);
+}
+
+.time-slots {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+
+.time-slot {
+  min-height: 3rem;
+  border: 1px solid var(--sand);
+  border-radius: 999px;
+  color: var(--wine);
+  background: var(--ivory);
+  cursor: pointer;
+  font-weight: 700;
+  transition: color var(--transition), background-color var(--transition), border-color var(--transition);
+}
+
+.time-slot:hover,
+.time-slot.selected,
+.time-slot[aria-selected='true'] {
+  border-color: var(--wine);
+  color: var(--white);
+  background: var(--wine);
+}
+
+.time-slot:active {
+  background: var(--espresso);
+  border-color: var(--espresso);
+}
+
+.confirmation {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  border-left: 0.25rem solid var(--gold);
+  background: var(--sand);
+}
+
+.confirmation.hidden {
+  display: none;
+}
+
+/* ==========================================================================
+   Contact page newspaper clipping
+   ========================================================================== */
+.newspaper-clipping,
+.contact-clipping {
+  position: relative;
+  width: min(100% - 2.5rem, 42rem);
+  margin: 3rem auto;
+  padding: 2rem 1.5rem;
+  border-top: 0.15rem solid var(--espresso);
+  border-bottom: 0.15rem solid var(--espresso);
+  background: var(--sand);
+  box-shadow: 0.5rem 0.5rem 0 rgba(216, 164, 143, 0.35);
+  transform: rotate(-0.8deg);
+}
+
+.newspaper-clipping h2,
+.contact-clipping h2 {
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   Footer — uses grid-template-areas so the layout is easy to read/reorder
+   ========================================================================== */
+.site-footer {
+  margin-top: 4rem;
+  padding: 3rem 1.25rem 1.25rem;
+  color: var(--ivory);
+  background: var(--espresso);
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "brand"
+    "links"
+    "contact";
+  gap: 2rem;
+  width: min(100%, var(--content-width));
+  margin-inline: auto;
+}
+
+.footer-brand {
+  grid-area: brand;
+}
+
+.footer-links {
+  grid-area: links;
+}
+
+.footer-contact {
+  grid-area: contact;
+}
+
+.footer-brand h3,
+.footer-links h4,
+.footer-contact h4 {
+  color: var(--ivory);
+}
+
+.footer-brand h3 {
+  font-size: 1.7rem;
+}
+
+.footer-brand p,
+.footer-contact p {
+  margin-bottom: 0.35rem;
+  color: var(--sand);
+  font-size: 0.9rem;
+}
+
+.footer-links ul {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.footer-links a {
+  color: var(--sand);
+  text-decoration: none;
+}
+
+.footer-links a:hover,
+.footer-links a:focus-visible {
+  color: var(--terracotta);
+}
+
+.footer-links a:active {
+  color: var(--gold);
+}
+
+.footer-bottom {
+  width: min(100%, var(--content-width));
+  margin: 2rem auto 0;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(232, 223, 211, 0.3);
+  color: var(--taupe);
+  font-size: 0.75rem;
+}
+
+/* ==========================================================================
+   Responsive breakpoints — mobile (base) -> tablet -> desktop -> large desktop
+   ========================================================================== */
+
+/* Small / large phones (base styles above already cover this) */
+
+/* Tablet: 480px and up */
+@media (min-width: 480px) {
+  header {
+    padding-inline: 2rem;
+  }
+
+  nav {
+    width: auto;
+    order: 0;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .services-grid,
+  .service-grid,
+  .service-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .time-slots {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Small desktop / large tablet: 768px and up */
+@media (min-width: 768px) {
+  header {
+    min-height: 5.25rem;
+    padding-inline: 3rem;
+  }
+
+  .logo {
+    font-size: 1.45rem;
+  }
+
+  .split-section {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .split-section-image {
+    order: 0;
+  }
+
+  /* Reverse layouts put their copy left and image right on wider screens. */
+  .split-section--reverse > .split-section-content {
+    order: 1;
+  }
+
+  .split-section--reverse > .split-section-image {
+    order: 2;
+  }
+
+  .services-image {
+    position: sticky;
+    top: 2rem;
+  }
+
+  nav ul {
+    gap: 1rem 1.5rem;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  .footer-content {
+    grid-template-columns: 1.3fr 0.8fr 1fr;
+    grid-template-areas: "brand links contact";
+  }
+
+  .site-footer {
+    padding-inline: 3rem;
+  }
+}
+
+/* Desktop: 1024px and up — a little extra breathing room at full width */
+@media (min-width: 1024px) {
+  section {
+    padding-block: 4.5rem;
+  }
+
+  .services-grid,
+  .service-grid,
+  .service-cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5em; /* relative unit: em ties gap to this container's font size */
+  }
+
+  .hero,
+  .hero-section {
+    padding: 6rem 1.25rem;
+  }
+}
+
+/* Reduced motion keeps the site comfortable without removing its texture. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
